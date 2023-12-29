@@ -7,12 +7,14 @@ PKG_SOURCE:=$(PKG).tgz
 PKG_SOURCE_URL:=https://github.com/robertdavidgraham/masscan
 PKG_HASH:=
 
+FULL_PATH := $(shell dirname $(shell dirname $(shell pwd)))
+
 ARCH ?= x86_64-linux-musl
 CFLAGS := 
 CC := $(ARCH)-gcc
 CXX := $(ARCH)-g++
 STRIP := $(ARCH)-strip
-CONFIGURE_FLAGS := CFLAGS="-Os -DSTATICPCAP -static -L../../../../libs/libpcap/$(ARCH)/libpcap-1.10.4 -I../../../../libs/libpcap/$(ARCH)/libpcap-1.10.4"
+CONFIGURE_FLAGS := CFLAGS="-Os -DSTATICPCAP -static -L$(FULL_PATH)/libs/libpcap/$(ARCH)/libpcap-1.10.4 -I$(FULL_PATH)/libs/libpcap/$(ARCH)/libpcap-1.10.4"
 MAKEFLAGS := -j $(shell nproc)
 
 TARGET ?= linux-x86_64
