@@ -8,13 +8,15 @@ PKG_SOURCE_URL:=https://github.com/openssh/openssh-portable
 PKG_SOURCE_BRANCH:=V_9_6_P1
 PKG_HASH:=
 
+FULL_PATH := $(shell dirname $(shell dirname $(shell pwd)))
+
 ARCH ?= x86_64-linux-musl
 CFLAGS := -Os
 LDFLAGS := -static
 CC := $(ARCH)-gcc
 CXX := $(ARCH)-g++
 STRIP := $(ARCH)-strip
-CONFIGURE_FLAGS := --with-libs --with-zlib=../../../../libs/zlib/$(ARCH)/zlib-1.3/ --without-zlib-version-check --with-ssl-dir=../../../../libs/openssl/$(ARCH)/openssl-3.2.0/
+CONFIGURE_FLAGS := --with-libs --with-zlib=$(FULL_PATH)/libs/zlib/$(ARCH)/zlib-1.3/ --without-zlib-version-check --with-ssl-dir=$(FULL_PATH)/libs/openssl/$(ARCH)/openssl-3.2.0/
 MAKEFLAGS := -j $(shell nproc)
 
 TARGET ?= linux-x86_64
