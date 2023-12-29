@@ -8,12 +8,11 @@ PKG_SOURCE_URL:=https://www.tcpdump.org/release/${PKG_SOURCE}
 PKG_HASH:=
 
 ARCH ?= x86_64-linux-musl
-CFLAGS := -Os -static
-#LDFLAGS := -L../../../../libs/libpcap/$(ARCH)/libpcap-1.10.4 -I../../../../libs/libpcap/$(ARCH)/libpcap-1.10.4
+CFLAGS := -Os -static -I../../../../libs/libpcap/$(ARCH)/libpcap-1.10.4/pcap -I../../../../libs/libpcap/$(ARCH)/libpcap-1.10.4 -L../../../../libs/libpcap/$(ARCH)/libpcap-1.10.4 -DHAVE_FCNTL_H
 CC := $(ARCH)-gcc
 CXX := $(ARCH)-g++
 STRIP := $(ARCH)-strip
-CONFIGURE_FLAGS := --with-cap-ng=../../../../libs/libpcap/$(ARCH)/libpcap-1.10.4 --disable-local-libpcap
+CONFIGURE_FLAGS := --with-cap-ng=../../../../libs/libpcap/$(ARCH)/libpcap-1.10.4
 MAKEFLAGS := -j $(shell nproc)
 
 TARGET ?= linux-x86_64
@@ -55,16 +54,15 @@ download:
 
 compile: download
 	@echo "I: building $(PKG_NAME)"
-	@cd $(ARCH)/$(PKG) && LDFLAGS="$(LDFLAGS)" CFLAGS="$(CFLAGS)" CC="$(CC)" CXX="$(CXX)" ./configure --host=$(ARCH) $(CONFIGURE_FLAGS)
+	@cd $(ARCH)/$(PKG) && LDFLAGS="$(LDFLAGS)" CFLAGS="$(CFLAGS)" DEFS="$(DEFS)" CC="$(CC)" CXX="$(CXX)" ./configure --host=$(ARCH) $(CONFIGURE_FLAGS)
 	@cd $(ARCH)/$(PKG) && make $(MAKEFLAGS)
 
 archive: compile
 	@echo "I: archiving"
 	@mkdir $(ARCH)/bin
-	@cp $(ARCH)/$(PKG)/socat $(ARCH)/bin/socat-$(SUFFIX)
+	@cp $(ARCH)/$(PKG)/tcpdump $(ARCH)/bin/tcpdump-$(SUFFIX)
 	@$(STRIP) $(ARCH)/bin/*
 
 clean:
 	@echo "I: cleaning up"
 	@rm -rf *linux*
-
