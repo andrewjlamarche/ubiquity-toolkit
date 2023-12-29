@@ -7,12 +7,14 @@ PKG_SOURCE:=$(PKG).tar.gz
 PKG_SOURCE_URL:=https://www.tcpdump.org/release/${PKG_SOURCE}
 PKG_HASH:=
 
+FULL_PATH := $(shell dirname $(shell dirname $(shell pwd)))
+
 ARCH ?= x86_64-linux-musl
-CFLAGS := -Os -static -I../../../../libs/libpcap/$(ARCH)/libpcap-1.10.4/pcap -I../../../../libs/libpcap/$(ARCH)/libpcap-1.10.4 -L../../../../libs/libpcap/$(ARCH)/libpcap-1.10.4 -DHAVE_FCNTL_H
+CFLAGS := -Os -static -I$(FULL_PATH)/libs/libpcap/$(ARCH)/libpcap-1.10.4/pcap -I$(FULL_PATH)/libs/libpcap/$(ARCH)/libpcap-1.10.4 -L$(FULL_PATH)/libs/libpcap/$(ARCH)/libpcap-1.10.4 -DHAVE_FCNTL_H
 CC := $(ARCH)-gcc
 CXX := $(ARCH)-g++
 STRIP := $(ARCH)-strip
-CONFIGURE_FLAGS := --with-cap-ng=../../../../libs/libpcap/$(ARCH)/libpcap-1.10.4
+CONFIGURE_FLAGS := --with-cap-ng=$(FULL_PATH)/libs/libpcap/$(ARCH)/libpcap-1.10.4
 MAKEFLAGS := -j $(shell nproc)
 
 TARGET ?= linux-x86_64
