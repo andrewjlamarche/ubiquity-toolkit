@@ -15,7 +15,7 @@ STRIP := $(ARCH)-strip
 MAKEFLAGS := -j $(shell nproc)
 
 TARGET ?= linux-x86_64
-SUFFIX ?= -x64
+SUFFIX ?= x64
 
 .PHONY: all
 all: compile archive
@@ -26,6 +26,9 @@ ifeq ($(ARCH), aarch64-linux-musl)
 else ifeq ($(ARCH), arm-linux-musleabi)
     TARGET := linux-generic32
     SUFFIX := arm32
+else ifeq ($(ARCH), armeb-linux-musleabi)
+    TARGET := linux-generic32
+    SUFFIX := arm32eb
 else ifeq ($(ARCH), mips64-linux-musl)
     TARGET := linux-generic64
     SUFFIX := mips64

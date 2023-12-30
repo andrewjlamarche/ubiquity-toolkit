@@ -20,6 +20,7 @@ compile: download
 	@echo "I: building $(PKG_NAME)"
 	@cd $(PKG_NAME) && make $(MAKEFLAGS) TARGET=aarch64-linux-musl install
 	@cd $(PKG_NAME) && make $(MAKEFLAGS) TARGET=arm-linux-musleabi install
+	@cd $(PKG_NAME) && make $(MAKEFLAGS) TARGET=armeb-linux-musleabi install
 	@cd $(PKG_NAME) && make $(MAKEFLAGS) TARGET=mips64-linux-musl install
 	@cd $(PKG_NAME) && make $(MAKEFLAGS) TARGET=mips-linux-musl install
 	@cd $(PKG_NAME) && make $(MAKEFLAGS) TARGET=riscv64-linux-musl install
