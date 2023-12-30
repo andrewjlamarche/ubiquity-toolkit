@@ -4,6 +4,7 @@ A collection of statically-linked tools target to run on almost any linux system
 # Supported Architectures
 - aarch64-linux-musl
 - arm-linux-musleabi
+- armeb-linux-musleabi
 - mips-linux-musl
 - mips64-linux-musl
 - riscv64-linux-musl
