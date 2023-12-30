@@ -16,7 +16,7 @@ CONFIGURE_FLAGS := --with-openssl=no --enable-static-bin --disable-shared
 MAKEFLAGS := -j $(shell nproc)
 
 TARGET ?= linux-x86_64
-SUFFIX ?= -x64
+SUFFIX ?= x64
 
 .PHONY: all
 all: compile archive

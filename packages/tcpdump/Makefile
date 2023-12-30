@@ -18,7 +18,7 @@ CONFIGURE_FLAGS := --with-cap-ng=$(FULL_PATH)/libs/libpcap/$(ARCH)/libpcap-1.10.
 MAKEFLAGS := -j $(shell nproc)
 
 TARGET ?= linux-x86_64
-SUFFIX ?= -x64
+SUFFIX ?= x64
 
 .PHONY: all
 all: compile archive

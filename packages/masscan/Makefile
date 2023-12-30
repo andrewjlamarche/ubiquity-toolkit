@@ -18,7 +18,7 @@ CONFIGURE_FLAGS := CFLAGS="-Os -DSTATICPCAP -static -L$(FULL_PATH)/libs/libpcap/
 MAKEFLAGS := -j $(shell nproc)
 
 TARGET ?= linux-x86_64
-SUFFIX ?= -x64
+SUFFIX ?= x64
 
 .PHONY: all
 all: compile archive

@@ -19,7 +19,7 @@ CONFIGURE_FLAGS := --with-pcap-includes=$(FULL_PATH)/libs/libpcap/$(ARCH)/libpca
 MAKEFLAGS := -j $(shell nproc)
 
 TARGET ?= linux-x86_64
-SUFFIX ?= -x64
+SUFFIX ?= x64
 
 .PHONY: all
 all: compile archive

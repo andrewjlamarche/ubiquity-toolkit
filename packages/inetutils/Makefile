@@ -16,7 +16,7 @@ CONFIGURE_FLAGS := --disable-ifconfig
 MAKEFLAGS := -j $(shell nproc)
 
 TARGET ?= linux-x86_64
-SUFFIX ?= -x64
+SUFFIX ?= x64
 
 .PHONY: all
 all: compile archive

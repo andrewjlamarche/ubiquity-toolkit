@@ -20,7 +20,7 @@ CONFIGURE_FLAGS := --with-libs --with-zlib=$(FULL_PATH)/libs/zlib/$(ARCH)/zlib-1
 MAKEFLAGS := -j $(shell nproc)
 
 TARGET ?= linux-x86_64
-SUFFIX ?= -x64
+SUFFIX ?= x64
 
 .PHONY: all
 all: compile archive
