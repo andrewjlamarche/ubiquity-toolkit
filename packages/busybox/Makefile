@@ -37,6 +37,12 @@ else ifeq ($(ARCH), mips64-linux-musl)
 else ifeq ($(ARCH), mips-linux-musl)
     TARGET := linux-generic32
     SUFFIX := mips32
+else ifeq ($(ARCH), mips64el-linux-musl)
+    TARGET := linux-generic64
+    SUFFIX := mips64el
+else ifeq ($(ARCH), mipsel-linux-musl)
+    TARGET := linux-generic32
+    SUFFIX := mips32el
 else ifeq ($(ARCH), riscv64-linux-musl)
     TARGET := linux-riscv64
     SUFFIX := riscv64

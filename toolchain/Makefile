@@ -23,6 +23,8 @@ compile: download
 	@cd $(PKG_NAME) && make $(MAKEFLAGS) TARGET=armeb-linux-musleabi install
 	@cd $(PKG_NAME) && make $(MAKEFLAGS) TARGET=mips64-linux-musl install
 	@cd $(PKG_NAME) && make $(MAKEFLAGS) TARGET=mips-linux-musl install
+	@cd $(PKG_NAME) && make $(MAKEFLAGS) TARGET=mips64el-linux-musl install
+	@cd $(PKG_NAME) && make $(MAKEFLAGS) TARGET=mipsel-linux-musl install
 	@cd $(PKG_NAME) && make $(MAKEFLAGS) TARGET=riscv64-linux-musl install
 	@cd $(PKG_NAME) && make $(MAKEFLAGS) TARGET=i386-linux-musl install
 	@cd $(PKG_NAME) && make $(MAKEFLAGS) TARGET=x86_64-linux-musl install
