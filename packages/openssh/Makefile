@@ -16,7 +16,7 @@ LDFLAGS := -static
 CC := $(ARCH)-gcc
 CXX := $(ARCH)-g++
 STRIP := $(ARCH)-strip
-CONFIGURE_FLAGS := --with-libs --with-zlib=$(FULL_PATH)/libs/zlib/$(ARCH)/zlib-1.3/ --without-zlib-version-check --with-ssl-dir=$(FULL_PATH)/libs/openssl/$(ARCH)/openssl-3.2.0/
+CONFIGURE_FLAGS := --with-libs --with-zlib=$(FULL_PATH)/libs/zlib/$(ARCH)/zlib-1.3.1/ --without-zlib-version-check --with-ssl-dir=$(FULL_PATH)/libs/openssl/$(ARCH)/openssl-3.2.0/
 MAKEFLAGS := -j $(shell nproc)
 
 TARGET ?= linux-x86_64
