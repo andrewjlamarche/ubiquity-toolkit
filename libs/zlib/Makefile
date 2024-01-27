@@ -8,7 +8,7 @@ PKG_SOURCE_URL:=https://www.zlib.net/$(PKG_SOURCE)
 PKG_HASH:=
 
 ARCH ?= x86_64-linux-musl
-CFLAGS := -Os -static
+CFLAGS := -Os -static -fPIC
 CC := $(ARCH)-gcc
 CXX := $(ARCH)-g++
 STRIP := $(ARCH)-strip
@@ -63,7 +63,7 @@ download:
 
 compile: download
 	@echo "I: building $(PKG_NAME)"
-	@cd $(ARCH)/$(PKG) && CC="$(CC)" CXX="$(CXX)" ./configure $(CONFIGURE_FLAGS)
+	@cd $(ARCH)/$(PKG) && CFLAGS="${CFLAGS}" CC="$(CC)" CXX="$(CXX)" ./configure $(CONFIGURE_FLAGS)
 	@cd $(ARCH)/$(PKG) && make $(MAKEFLAGS)
 
 archive: compile
