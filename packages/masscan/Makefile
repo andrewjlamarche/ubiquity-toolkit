@@ -41,9 +41,11 @@ else ifeq ($(ARCH), mips-linux-musl)
 else ifeq ($(ARCH), mips64el-linux-musl)
     TARGET := linux-generic64
     SUFFIX := mips64el
+    CONFIGURE_FLAGS := CFLAGS="-Os -DSTATICPCAP -static -L$(FULL_PATH)/libs/libpcap/$(ARCH)/libpcap-1.10.4 -I$(FULL_PATH)/libs/libpcap/$(ARCH)/libpcap-1.10.4 -fPIC"
 else ifeq ($(ARCH), mipsel-linux-musl)
     TARGET := linux-generic32
     SUFFIX := mips32el
+    CONFIGURE_FLAGS := CFLAGS="-Os -DSTATICPCAP -static -L$(FULL_PATH)/libs/libpcap/$(ARCH)/libpcap-1.10.4 -I$(FULL_PATH)/libs/libpcap/$(ARCH)/libpcap-1.10.4 -fPIC"
 else ifeq ($(ARCH), riscv64-linux-musl)
     TARGET := linux-riscv64
     SUFFIX := riscv64
