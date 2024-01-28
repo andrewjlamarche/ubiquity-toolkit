@@ -12,7 +12,7 @@ CFLAGS := -Os -static -fPIC
 CC := $(ARCH)-gcc
 CXX := $(ARCH)-g++
 STRIP := $(ARCH)-strip
-CONFIGURE_FLAGS := -static
+CONFIGURE_FLAGS := --static
 MAKEFLAGS := -j $(shell nproc)
 
 TARGET ?= linux-x86_64
