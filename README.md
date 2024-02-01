@@ -1,12 +1,14 @@
 # ubiquity-toolkit
-A collection of statically-linked tools target to run on almost any linux system.
+A collection of statically-linked tools targeted to run on almost any linux system.
 
 # Supported Architectures
 - aarch64-linux-musl
 - arm-linux-musleabi
 - armeb-linux-musleabi
 - mips-linux-musl
+- mipsel-linux-musl
 - mips64-linux-musl
+- mips64el-linux-musl
 - riscv64-linux-musl
 - x86_64-linux-musl
 - i386-linux-musl
@@ -26,4 +28,6 @@ This will build all the required toolchains (may take several hours depending on
 This has been tested on Ubuntu 22.04.
 
 # Dependencies
+This is probably missing some...
+
 `build-essential make autotools`
