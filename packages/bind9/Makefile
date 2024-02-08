@@ -24,6 +24,7 @@ all: compile archive
 ifeq ($(ARCH), aarch64-linux-musl)
     TARGET := linux-aarch64
     SUFFIX := arm64
+    CFLAGS := -Os -static -fPIC
 else ifeq ($(ARCH), arm-linux-musleabi)
     TARGET := linux-generic32
     SUFFIX := arm32
