@@ -51,6 +51,7 @@ else ifeq ($(ARCH), i386-linux-musl)
 else ifeq ($(ARCH), x86_64-linux-musl)
     TARGET := linux-x86-64
     SUFFIX := x64
+    CONFIGURE_FLAGS := --enable-mpers=no
 else
     $(error E: a valid arch must be specified)
 endif
@@ -63,7 +64,7 @@ download:
 
 compile: download
 	@echo "I: building $(PKG_NAME)"
-	@cd $(ARCH)/$(PKG) && CFLAGS="$(CFLAGS)" CC="$(CC)" CXX="$(CXX)" ./configure --host=$(ARCH)
+	@cd $(ARCH)/$(PKG) && CFLAGS="$(CFLAGS)" CC="$(CC)" CXX="$(CXX)" ./configure --host=$(ARCH) $(CONFIGURE_FLAGS)
 	@cd $(ARCH)/$(PKG) && $(MAKE) MAKEFLAGS=$(MAKEFLAGS)
 
 archive: compile
@@ -75,3 +76,4 @@ archive: compile
 clean:
 	@echo "I: cleaning up"
 	@rm -rf *linux*
+
