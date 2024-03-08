@@ -53,6 +53,15 @@ else ifeq ($(ARCH), i386-linux-musl)
 else ifeq ($(ARCH), x86_64-linux-musl)
     TARGET := linux-x86_64
     SUFFIX := x64
+else ifeq ($(ARCH), powerpc-linux-musl)
+    TARGET := linux-ppc
+    SUFFIX := ppc32
+else ifeq ($(ARCH), powerpc64-linux-musl)
+    TARGET := linux-ppc64
+    SUFFIX := ppc64
+else ifeq ($(ARCH), powerpc64le-linux-musl)
+    TARGET := linux-ppc64le
+    SUFFIX := ppc64le
 else
     $(error E: a valid arch must be specified)
 endif

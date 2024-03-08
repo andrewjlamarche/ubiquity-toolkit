@@ -28,6 +28,9 @@ compile: download
 	@cd $(PKG_NAME) && make $(MAKEFLAGS) TARGET=riscv64-linux-musl install
 	@cd $(PKG_NAME) && make $(MAKEFLAGS) TARGET=i386-linux-musl install
 	@cd $(PKG_NAME) && make $(MAKEFLAGS) TARGET=x86_64-linux-musl install
+	@cd $(PKG_NAME) && make $(MAKEFLAGS) TARGET=powerpc-linux-musl install
+	@cd $(PKG_NAME) && make $(MAKEFLAGS) TARGET=powerpc64-linux-musl install
+	@cd $(PKG_NAME) && make $(MAKEFLAGS) TARGET=powerpc64le-linux-musl install
 	@echo "I: remember to add $(PKG_NAME)/output/bin to your PATH"
 
 clean:
