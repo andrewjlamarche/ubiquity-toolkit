@@ -12,6 +12,9 @@ A collection of statically-linked tools targeted to run on almost any linux syst
 - riscv64-linux-musl
 - x86_64-linux-musl
 - i386-linux-musl
+- powerpc-linux-musl
+- powerpc64-linux-musl
+- powerpc64le-linux-musl
 
 # Building
 Each package can be built individually by running `make ARCH=<arch>` inside the respective directory, or by using the included build scripts by running `./build-*.sh <arch>`.
