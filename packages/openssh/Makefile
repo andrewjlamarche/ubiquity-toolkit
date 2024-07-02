@@ -1,11 +1,11 @@
 PKG_NAME:=openssh
-PKG_VERSION:=9.6
+PKG_VERSION:=9.8
 PKG:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG).tar.gz
 PKG_SOURCE_URL:=https://github.com/openssh/openssh-portable
-PKG_SOURCE_BRANCH:=V_9_6_P1
+PKG_SOURCE_BRANCH:=V_9_8_P1
 PKG_HASH:=
 
 FULL_PATH := $(shell dirname $(shell dirname $(shell pwd)))
@@ -34,6 +34,7 @@ else ifeq ($(ARCH), arm-linux-musleabi)
 else ifeq ($(ARCH), armeb-linux-musleabi)
     TARGET := linux-generic32
     SUFFIX := arm32eb
+    CONFIGURE_FLAGS := --with-libs --with-zlib=$(FULL_PATH)/libs/zlib/$(ARCH)/zlib-1.3.1/ --without-zlib-version-check --with-ssl-dir=$(FULL_PATH)/libs/openssl/$(ARCH)/openssl-3.2.0/ --with-prngd-socket=/dev/urandom
 else ifeq ($(ARCH), mips64-linux-musl)
     TARGET := linux-generic64
     SUFFIX := mips64
