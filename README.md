@@ -17,20 +17,8 @@ A collection of statically-linked tools targeted to run on almost any linux syst
 - powerpc64le-linux-musl
 
 # Building
-Each package can be built individually by running `make ARCH=<arch>` inside the respective directory, or by using the included build scripts by running `./build-*.sh <arch>`.
+It is first recommended to build and install the musl toolchain for your target. See [musl-cross-make](https://github.com/richfelker/musl-cross-make).
 
-It is recommended to first build the musl toolchain, then the libraries and finally the package. E.g.:
-```
-./build-toolchians.sh
-./build-libs aarch64-linux-musl
-./build-packages aarch64-linux-musl
-```
+Build the libraries: `make -j $(nproc) lib TARGET=aarch64-linux-musl`
 
-This will build all the required toolchains (may take several hours depending on the system), then all the libraries for aarch64 and then all aarch64 packages.
-
-This has been tested on Ubuntu 22.04.
-
-# Dependencies
-This is probably missing some...
-
-`build-essential make autotools`
+Build the packages: `make -j $(nproc) package TARGET=aarch64-linux-musl`
