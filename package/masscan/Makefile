@@ -3,7 +3,7 @@
 #
 
 PKG_NAME := masscan
-PKG_VERSION := 1.3.2
+PKG_VERSION := master
 PKG := ${PKG_NAME}-${PKG_VERSION}
 PKG_SOURCE_URL :=
 PKG_HASH :=
@@ -30,3 +30,5 @@ compile: download
 	@echo "I: building ${PKG}"
 	@cd ${TARGET}/${PKG} && patch -p1 < ../../patches/pcap-stub.patch
 	$(MAKE) -C ${TARGET}/${PKG} CC=${CC} CXX=${CXX} CFLAGS=${CFLAGS} LDFLAGS=${LDFLAGS}
+	@mkdir ${TARGET}/build
+	@cp ${TARGET}/${PKG}/bin/* ${TARGET}/build
