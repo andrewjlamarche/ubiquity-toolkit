@@ -1,0 +1,93 @@
+name: Build Multi-Arch Packages
+
+on:
+  push:
+    branches: [ "main" ]
+
+env:
+  MCM_REF: master
+  MCM_PREFIX: /opt/musl-cross
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        target:
+          - aarch64-linux-musl
+          - arm-linux-musleabi
+          - armeb-linux-musleabi
+          - mips-linux-musl
+          - mipsel-linux-musl
+          - mips64-linux-musl
+          - mips64el-linux-musl
+          - riscv64-linux-musl
+          - x86_64-linux-musl
+          - i386-linux-musl
+          - powerpc-linux-musl
+          - powerpc64-linux-musl
+          - powerpc64le-linux-musl
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Install build dependencies
+      run: |
+        sudo apt update
+        sudo apt install -y build-essential curl wget patch gawk bzip2 texinfo file
+
+    - name: Cache musl cross toolchain
+      id: cache-toolchain
+      uses: actions/cache@v4
+      with:
+        path: ${{ env.MCM_PREFIX }}
+        key: musl-cross-${{ matrix.target }}-${{ env.MCM_REF }}-v1
+    
+    - name: Force IPv4 Only (Disable IPv6)
+      run: |
+        sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
+        sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1
+        sudo sysctl -w net.ipv6.conf.lo.disable_ipv6=1
+
+    - name: Build musl cross toolchain
+      if: steps.cache-toolchain.outputs.cache-hit != 'true'
+      run: |
+        git clone --depth 1 --branch ${{ env.MCM_REF }} https://github.com/richfelker/musl-cross-make
+        cd musl-cross-make
+        cat > config.mak <<EOF
+        TARGET = ${{ matrix.target }}
+        OUTPUT = ${{ env.MCM_PREFIX }}
+        EOF
+        make -j $(nproc)
+        sudo make install
+
+    - name: Add toolchain to path
+      run: echo "${{ env.MCM_PREFIX }}/bin" >> "$GITHUB_PATH"
+
+    - name: Verify toolchain
+      run: ${{ matrix.target }}-gcc --version
+
+    - name: Build lib
+      run: make -j $(nproc) lib TARGET=${{ matrix.target }}
+
+    - name: Build package
+      run: make -j $(nproc) package TARGET=${{ matrix.target }}
+
+    - name: Stage executable artifacts
+      run:
+        find . -type d -name build -print0 | while IFS= read -r -d '' dir; do
+          find "$dir" -maxdepth 10 -type f -executable -print0
+        done | while IFS= read -r -d '' file; do
+          rel="${file#./}"
+          mkdir -p "staging/$(dirname "$rel")"
+          cp "$file" "staging/$rel"
+        done
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-${{ matrix.target }}
+        path: staging/
+        if-no-files-found: warn
