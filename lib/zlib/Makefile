@@ -5,9 +5,9 @@
 include ${TOPDIR}/rules.mk
 
 PKG_NAME := zlib
-PKG_VERSION := 1.3.1
+PKG_VERSION := 1.3.2
 PKG := ${PKG_NAME}-${PKG_VERSION}
-PKG_SOURCE_URL := https://www.zlib.net/${PKG}.tar.xz
+PKG_SOURCE_URL := https://www.zlib.net/fossils/${PKG}.tar.gz
 PKG_HASH :=
 
 # Configuration
