@@ -11,7 +11,7 @@ PKG_SOURCE_URL := https://ftp.gnu.org/gnu/ncurses/${PKG}.tar.gz
 PKG_HASH :=
 
 # Configuration
-CONFIGURE_FLAGS :=
+CONFIGURE_FLAGS := --disable-stripping
 
 # Git
 GIT_SOURCE_URL :=
