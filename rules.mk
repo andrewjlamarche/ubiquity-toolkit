@@ -37,7 +37,7 @@ else ifeq ($(TARGET), i386-linux-musl)
     TYPE := linux-x86
     SUFFIX := x86
 else ifeq ($(TARGET), x86_64-linux-musl)
-    TYPE := linux-x86-64
+    TYPE := linux-x86_64
     SUFFIX := x64
 else ifeq ($(TARGET), powerpc-linux-musl)
     TYPE := linux-ppc
