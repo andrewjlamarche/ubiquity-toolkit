@@ -9,7 +9,7 @@ PKG_SOURCE_URL :=
 PKG_HASH :=
 
 # Configuration
-CONFIGURE_FLAGS := --bindir=${CURDIR}/${TARGET}/build
+CONFIGURE_FLAGS := --bindir=${CURDIR}/${TARGET}/build --disable-mpers
 
 # Git
 GIT_SOURCE_URL := https://github.com/strace/strace
