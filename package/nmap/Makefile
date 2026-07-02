@@ -23,5 +23,9 @@ JOBFLAGS := $(if $(JOBS),$(JOBS),)
 
 compile: download
 	@echo "I: building ${PKG}"
-	@cd ${TARGET}/${PKG} && CC=${CC} CXX=${CXX} ./configure ${CONFIGURE_FLAGS} --host=${TARGET} #--prefix=${CURDIR}/${TARGET}/build --exec-prefix=${CURDIR}/${TARGET}/build
+	@cd ${TARGET}/${PKG} && CC=${CC} CXX=${CXX} ./configure ${CONFIGURE_FLAGS} --host=${TARGET}
 	MAKEFLAGS=${JOBFLAGS} $(MAKE) -C ${TARGET}/${PKG} static
+	@mkdir -p ${CURDIR}/${TARGET}/build
+	@cp ${TARGET}/${PKG}/nmap ${CURDIR}/${TARGET}/build
+	@cp ${TARGET}/${PKG}/ncat/ncat ${CURDIR}/${TARGET}/build
+	@cp ${TARGET}/${PKG}/nping/nping ${CURDIR}/${TARGET}/build
