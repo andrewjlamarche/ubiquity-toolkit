@@ -9,7 +9,7 @@ PKG_SOURCE_URL := https://ftp.gnu.org/gnu/${PKG_NAME}/${PKG}.tar.xz
 PKG_HASH :=
 
 # Configuration
-CONFIGURE_FLAGS :=
+CONFIGURE_FLAGS := --enable-no-install-program=stdbuf,libstdbuf
 
 # Git
 GIT_SOURCE_URL :=
