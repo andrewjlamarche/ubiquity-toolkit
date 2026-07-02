@@ -71,10 +71,10 @@ jobs:
       run: ${{ matrix.target }}-gcc --version
 
     - name: Build lib
-      run: TARGET=${{ matrix.target }} make -j $(nproc) lib
+      run: make -j $(nproc) lib TARGET=${{ matrix.target }}
 
     - name: Build package
-      run: TARGET=${{ matrix.target }} make -j $(nproc) package
+      run: make -j $(nproc) package TARGET=${{ matrix.target }}
 
     - name: Stage executable artifacts
       run:
