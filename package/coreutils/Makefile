@@ -16,3 +16,5 @@ GIT_SOURCE_URL :=
 GIT_BRANCH :=
 
 include ${TOPDIR}/rules.mk
+
+CFLAGS := "-Os -static -fPIC"
