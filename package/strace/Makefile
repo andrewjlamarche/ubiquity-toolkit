@@ -17,6 +17,8 @@ GIT_BRANCH := v6.13
 
 include ${TOPDIR}/rules.mk
 
+CFLAGS := "-Os -static -fPIC"
+
 compile: download
 	@echo "I: building ${PKG}"
 	@cd ${TARGET}/${PKG} && ./bootstrap
